@@ -1,0 +1,95 @@
+/*
+	Notes: 
+	
+		Depending on the project, I would normally use some sort of CSS reset, such as Eric Meyer's
+		CSS Reset or normalize.css by Nicolas Gallagher. That would be included up top
+	
+		I try and avoid using !important wherever I can. If I ever use it, I always include a reason
+		as to why it is necessary
+
+		I also use as semantic markup as possible, where the class names describe their content and
+		not the style that that content should have
+
+		In recent times the projects I've worked on have stopped requiring support for IE7 and 8. This
+		code sample reflects that but I am knowledgeable of the different hacks, pitfalls and nuances
+		that are available for those browsers
+
+		For raw CSS (i.e. where no preprocessor is available and therefore no mixins, tools such as
+		Prefixr and Ultimate CSS Gradient Generator are invaluable)
+
+*/
+
+/* ==================================================================================
+
+	News Items
+	----------
+
+	Here is a description about this particular section
+
+================================================================================== */
+
+	.main-news-item{
+
+		display: inline-block;
+		width: 30%;
+
+		padding: 30px;
+		margin: 30px 60px 0;
+
+		border: 1px solid rgb( 200, 200, 200 );
+		border: 1px solid rgba( 200, 200, 200, 0.8 );
+
+		/* Linear gradient still needs the newer -webkit prefix */
+		background: #f9f9f9;
+		background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+		background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+
+		box-shadow: 0 0 5px rgba( 0,0,0,0.5 );
+
+		border-radius: 10px;
+
+		/* Transitions also need the webkit prefix */
+		-webkit-transition: background-position 0.5s;
+		transition: background-position 0.5s;
+
+	}
+
+	/* Last news item needs no marking, to keep it in a row */
+	.main-news-item:last-of-type{
+
+		margin-right: 0;
+		clear: right;
+
+	}
+
+
+	/*
+		A class of highlight or breaking is added to our main news items from the CMS
+		in which case we change the border colour to a nice, beautiful red.
+	*/
+	.main-news-item.highlight,
+	.main-news-item.breaking{
+
+		border-color: rgb( 255, 0, 0 );
+		border-color: rgba( 255, 0, 0, 0.8 );
+
+	}
+
+
+	/*
+		If this is a large news item with a background image, we can use calc to work out the 
+		position (as long as calc is available which is added as a html class)
+	*/
+	.calc .main-news-item.feature{
+
+		background-position: 100% 100%;
+
+		/* We currently still need the -webkit prefix */
+		background-position: -webkit-calc( 100% + 30px ) -webkit-calc( 100% + 16px );
+		background-position: calc( 100% + 30px ) calc( 100% + 16px );
+
+		background-origin: content-box;
+		background-size: 100% auto;
+		background-clip: content-box;
+
+	}

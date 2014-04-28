@@ -1,0 +1,111 @@
+/*
+	Notes: 
+	
+		Depending on the environment, I'm comfortable using tools such as CodeKit or command line
+		tools such as Grunt or Gulp to compile this into standard CSS.
+
+		I normally use different files for items such as variables and mixins, but for the sake
+		of this sample, I've kept them in one file.
+
+*/
+
+
+/* ==================================================================================
+
+	Colours
+
+================================================================================== */
+
+	// Text colours
+	$primaryText: 	rgb( 40, 40, 40 );
+	$secondaryText: rgb( 100, 100, 100 );
+	$inverseText: 	rgb( 210, 210, 210 );
+
+	// Background colours
+	$primaryBG:		rgb( 210, 220, 230 );
+	$secondaryBG:	rgb( 150, 150, 150 );
+
+	// Blocks
+	$marginUnit: 	30px;
+
+
+/* ==================================================================================
+
+	Mixins
+
+================================================================================== */
+
+
+/*
+	REM calculation
+	Usage: 		p { @include font-size(14px) }
+	Output: 	font-size: 14px; font-size: 0.8rem;
+*/
+
+@function calculateRem( $size ){
+
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+
+}
+
+@mixin font-size( $size ){
+
+	font-size: $size;
+	font-size: calculateRem( $size );
+
+}
+
+
+/*
+	CSS Transitions
+	Usage: .thing{ @include transition( 0.3s linear all ); }
+	Output: as below
+*/
+
+@mixin transition( $args ){
+
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+
+}
+
+
+/* ==================================================================================
+
+	Sample SASS
+
+================================================================================== */
+
+	.main-news-item{
+
+		background: $primaryBG;
+
+		@include transition( 0.3s linear all );
+
+		p{
+
+			color: $primaryText;
+			@include font-size( 14px );
+
+			margin-bottom: $marginUnit;
+
+			&:last-of-type{
+
+				margin-bottom: 0;
+
+			}
+		
+		}
+
+		>.inner-item{
+
+			background: $secondaryBG;
+
+		}
+
+	}
+
