@@ -26,7 +26,7 @@
 
 			if( item !== undefined ){
 
-				if(item.parentNode !== null ){ // check that the item was actually added to DOM
+				if( item.parentNode !== null ){ // check that the item was actually added to DOM
 					item.parentNode.removeChild( item );
 				}
 
@@ -48,8 +48,8 @@
 	
 	loader = function( options ){
 
-		var div = document.createElement("div");
-		div.className = "feedback-loader";
+		var div = document.createElement( 'div' );
+		div.className = 'feedback-loader';
 
 		var valueText = element( 'span', options.loadingText );
 
